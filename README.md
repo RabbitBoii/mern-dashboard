@@ -12,7 +12,11 @@ A complete full-stack web application built with the Next.js App Router. This pr
 
 * **Dashboard**
     
+<<<<<<< HEAD
 <img src="assets/dashboard.png" alt="dashboard" width="800" height="800">
+=======
+<img src="assets/Screenshot 2025-10-02 002302.png" alt="dashboard" width="800" height="800">
+>>>>>>> 9093b5511e91c5c3306a13ef7088a1f034d2ff23
 
 
 * **Profile Page**
