@@ -30,11 +30,13 @@ export default function NoteModal({ note, onClose, onSave, isOpen }: NoteModalPr
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onSave({ title, content });
+        setTitle('');
+        setContent('');
     };
 
     return (
 
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 flex justify-center items-center">
+        <div className="fixed inset-0 bg-gray-100 bg-opacity-50 z-40 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md z-50">
                 <h2 className="text-2xl font-bold mb-4 text-gray-900">{note ? 'Edit Note' : 'Create a New Note'}</h2>
                 <form onSubmit={handleSubmit}>
