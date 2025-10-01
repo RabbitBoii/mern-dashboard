@@ -4,6 +4,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { assets } from "@/assets/assets";
 
 export default function Navbar() {
     const router = useRouter();
@@ -38,8 +40,10 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
-                        <Link href='/dashboard' className="text-2xl font-bold text-indigo-600 ">
-                            Logo
+                        <Link href='/dashboard' className="text-2xl font-bold">
+                            {/* Logo */}
+
+                            <Image src={assets.logo} alt="logo" className="w-40 h-10" />
                         </Link>
                     </div>
 

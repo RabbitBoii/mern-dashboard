@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Full-Stack Next.js Dashboard with Authentication
 
-## Getting Started
+A complete full-stack web application built with the Next.js App Router. This project features a modern tech stack and includes user authentication, a protected dashboard, full CRUD functionality for notes, and user profile management.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📸 Screenshots
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* **Login Page**
+    
+* **Dashboard**
+    
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[Image of the application's dashboard with notes]
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Profile Page**
+    
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Core Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **User Authentication**: Secure user signup and login functionality using JWT (JSON Web Tokens).
+* **Protected Routes**: Middleware to protect sensitive routes (like the dashboard) from unauthorized access.
+* **Full CRUD Functionality**: Users can Create, Read, Update, and Delete their own notes.
+* **Profile Management**: Users can view and update their profile information.
+* **Responsive Design**: A clean and modern UI built with Tailwind CSS that works on all devices.
+* **API Layer**: A complete backend API built with Next.js Route Handlers.
+* **Database Integration**: MongoDB integration using Mongoose for data persistence.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* **Frontend**: [Next.js](https://nextjs.org/) (App Router), [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com/)
+* **Backend**: [Next.js](https://nextjs.org/) (Route Handlers), [Mongoose](https://mongoosejs.com/)
+* **Database**: [MongoDB](https://www.mongodb.com/)
+* **Authentication**: [JWT](https://jwt.io/), [bcryptjs](https://www.npmjs.com/package/bcryptjs)
+* **API Client**: [Axios](https://axios-http.com/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🚀 Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+* [Node.js](https://nodejs.org/) (v18 or later)
+* [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+* [MongoDB](https://www.mongodb.com/try/download/community) installed locally or a connection string from MongoDB Atlas.
+
+### Installation
+
+1.  **Clone the repository**
+    ```sh
+    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    ```
+2.  **Navigate to the project directory**
+    ```sh
+    cd your-repo-name
+    ```
+3.  **Install NPM packages**
+    ```sh
+    npm install
+    ```
+4.  **Set up environment variables**
+    Create a file named `.env.local` in the root of your project and add the following variables.
+    ```env
+    # Your MongoDB connection string
+    MONGODB_URI="your_mongodb_connection_string"
+
+    # A strong, random secret for signing JWTs
+    JWT_SECRET="your_jwt_secret_key"
+    ```
+5.  **Run the development server**
+    ```sh
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+---
+
+## 🗺️ API Endpoints
+
+The application includes the following API endpoints, built with Next.js Route Handlers.
+
+| Method | Endpoint                 | Description                     | Protected |
+| :----- | :----------------------- | :------------------------------ | :-------: |
+| `POST` | `/api/auth/signup`       | Register a new user             |    No     |
+| `POST` | `/api/auth/login`        | Log in a user and get a token   |    No     |
+| `GET`  | `/api/auth/logout`       | Log out a user                  |    No     |
+| `GET`  | `/api/user/profile`      | Get the logged-in user's profile|    Yes    |
+| `PUT`  | `/api/user/profile`      | Update the user's profile       |    Yes    |
+| `POST` | `/api/notes`             | Create a new note               |    Yes    |
+| `GET`  | `/api/notes`             | Get all notes for the user      |    Yes    |
+| `PUT`  | `/api/notes/[noteId]`    | Update a specific note          |    Yes    |
+| `DELETE`| `/api/notes/[noteId]`    | Delete a specific note          |    Yes    |
+
+---
