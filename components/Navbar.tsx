@@ -10,7 +10,7 @@ import { assets } from "@/assets/assets";
 export default function Navbar() {
     const router = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [user, setUser] = useState<{ username: String } | null>(null)
+    const [user, setUser] = useState<{ username: string } | null>(null)
 
 
     useEffect(() => {

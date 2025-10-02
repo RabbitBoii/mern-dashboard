@@ -4,6 +4,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation"
+import { NextResponse } from "next/server";
 import React, { useState } from "react";
 
 
@@ -29,10 +30,18 @@ export default function Login() {
         try {
             await axios.post('/api/auth/login', user);
             router.push('/dashboard');
-        } catch (error: any) {
-            console.error("Login failed:", error);
-            setError(error.response?.data?.error || "Login failed. Please try again.")
-        } finally {
+        }
+        // catch (error: any) {
+        //     console.error("Login failed:", error);
+        //     setError(error.response?.data?.error || "Login failed. Please try again.")
+        // }
+        catch (error: unknown) {
+            if (error instanceof Error) {
+                return NextResponse.json({ error: error.message }, { status: 500 });
+            }
+            return NextResponse.json({ error: 'An internal server error occurred' }, { status: 500 });
+        }
+        finally {
             setLoading(false);
         }
 

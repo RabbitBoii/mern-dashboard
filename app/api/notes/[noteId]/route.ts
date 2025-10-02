@@ -22,10 +22,17 @@ export async function PUT(request: NextRequest, { params }: { params: { noteId: 
         }
 
         return NextResponse.json({ message: "Note Updated. ", data: updatedNote })
-    } catch (error: any) {
+    }
+    // catch (error: any) {
 
-        return NextResponse.json({ error: error.message }, { status: 401 })
+    //     return NextResponse.json({ error: error.message }, { status: 401 })
 
+    // }
+    catch (error: unknown) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
+        return NextResponse.json({ error: 'An internal server error occurred' }, { status: 500 });
     }
 }
 
@@ -44,9 +51,16 @@ export async function DELETE(request: NextRequest, { params }: { params: { noteI
         return NextResponse.json({ message: "Note deleted successfully." })
 
     }
-    catch (error: any) {
+    // catch (error: any) {
 
-        return NextResponse.json({ error: error.message }, { status: 401 })
+    //     return NextResponse.json({ error: error.message }, { status: 401 })
 
+    // }
+
+    catch (error: unknown) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
+        return NextResponse.json({ error: 'An internal server error occurred' }, { status: 500 });
     }
 }

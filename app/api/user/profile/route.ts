@@ -1,7 +1,6 @@
 import { ConnectDB } from "@/config/db";
 import { getUserData } from "@/lib/getData";
 import User from "@/models/User";
-import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -23,8 +22,15 @@ export async function GET(request: NextRequest) {
             message: "User profile fetched successfully",
             data: user,
         })
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 401 })
+    }
+    // catch (error: any) {
+    //     return NextResponse.json({ error: error.message }, { status: 401 })
+    // }
+    catch (error: unknown) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
+        return NextResponse.json({ error: 'An internal server error occurred' }, { status: 500 });
     }
 }
 
@@ -56,8 +62,14 @@ export async function PUT(request: NextRequest) {
             message: "Profile updated successfully.",
             data: updatedUser,
         })
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
     }
-
+    // catch (error: any) {
+    //     return NextResponse.json({ error: error.message }, { status: 500 });
+    // }
+    catch (error: unknown) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
+        return NextResponse.json({ error: 'An internal server error occurred' }, { status: 500 });
+    }
 }

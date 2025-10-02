@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation"
 import React, { useState } from "react";
 import Link from "next/link";
+import { NextResponse } from "next/server";
 
 
 export default function SignUp() {
@@ -30,10 +31,18 @@ export default function SignUp() {
             const response = await axios.post('/api/auth/signup', user);
             console.log("Signup success:", response.data);
             router.push('/login');
-        } catch (error: any) {
-            console.error("Signup failed:", error);
-            setError(error.response?.data?.error || "Signup failed. Please try again.")
-        } finally {
+        }
+        // catch (error: any) {
+        //     console.error("Signup failed:", error);
+        //     setError(error.response?.data?.error || "Signup failed. Please try again.")
+        // }
+        catch (error: unknown) {
+            if (error instanceof Error) {
+                return NextResponse.json({ error: error.message }, { status: 500 });
+            }
+            return NextResponse.json({ error: 'An internal server error occurred' }, { status: 500 });
+        }
+        finally {
             setLoading(false);
         }
 

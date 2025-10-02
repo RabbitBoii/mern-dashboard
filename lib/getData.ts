@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken"
 
 export const getUserData = (request: NextRequest) => {
@@ -10,7 +10,13 @@ export const getUserData = (request: NextRequest) => {
         const decodedToken: any = jwt.verify(token, process.env.JWT_SECRET!);
         return decodedToken.id;
     }
-    catch (error: any) {
-        throw new Error(error.message);
+    // catch (error: any) {
+    //     throw new Error(error.message);
+    // }
+    catch (error: unknown) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
+        return NextResponse.json({ error: 'An internal server error occurred' }, { status: 500 });
     }
 }

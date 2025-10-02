@@ -10,8 +10,14 @@ export async function GET(request: NextRequest) {
         const notes = await Notes.find({ user: userId });
         return NextResponse.json({ data: notes });
     }
-    catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 401 })
+    // catch (error: any) {
+    //     return NextResponse.json({ error: error.message }, { status: 401 })
+    // }
+    catch (error: unknown) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
+        return NextResponse.json({ error: 'An internal server error occurred' }, { status: 500 });
     }
 }
 
@@ -30,7 +36,14 @@ export async function POST(request: NextRequest) {
 
         const savedNote = await newNote.save();
         return NextResponse.json({ message: "Note created.", data: savedNote }, { status: 201 })
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 401 })
+    }
+    // catch (error: any) {
+    //     return NextResponse.json({ error: error.message }, { status: 401 })
+    // }
+    catch (error: unknown) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
+        return NextResponse.json({ error: 'An internal server error occurred' }, { status: 500 });
     }
 }
