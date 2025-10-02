@@ -19,14 +19,14 @@ interface NoteCardProps {
 export default function NoteCard({ note, onDelete, onEdit }: NoteCardProps) {
 
 
-    const handleDelete = async (noteId: string) => {
-        try {
-            await axios.delete(`/api/note/${noteId}`);
-        }
-        catch (error) {
-            console.error("Failed to delete note ", error);
-        }
-    }
+    // const handleDelete = async (noteId: string) => {
+    //     try {
+    //         await axios.delete(`/api/note/${noteId}`);
+    //     }
+    //     catch (error) {
+    //         console.error("Failed to delete note ", error);
+    //     }
+    // }
 
 
     return (

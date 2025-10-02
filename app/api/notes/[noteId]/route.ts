@@ -1,7 +1,6 @@
 import { ConnectDB } from "@/config/db";
 import { getUserData } from "@/lib/getData";
 import Notes from "@/models/Notes";
-import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(request: NextRequest, { params }: { params: { noteId: string } }) {
