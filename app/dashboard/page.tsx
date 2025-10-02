@@ -49,7 +49,7 @@ export default function DashboardPage() {
     useEffect(() => {
         fetchNotes();
 
-    }, [fetchNotes()])
+    }, [sortOrder])
 
 
     const handleDelete = async (noteId: string) => {
